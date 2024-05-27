@@ -51,7 +51,7 @@
 
 		<%}%></table>
 				
-			<%} else  {
+			<%}  else  {
 		%>
 		
 			<h2>No products available</h2>
