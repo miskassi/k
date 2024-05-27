@@ -153,9 +153,21 @@ public class ProdottoDao implements ProdottoDaoInterfaccia{
 
 		String selectSQL = "SELECT * FROM " + ProdottoDao.TABLE_NAME;
 
-		if (order != null && !order.equals("")) {
-			selectSQL += " ORDER BY " + order;
-		}
+		// Verifica che l'ordine sia uno tra i valori predefiniti sicuri
+	    if (order != null && !order.equals("")) {
+	        switch (order) {
+	            case "NOME":
+	            case "PREZZO":
+	            case "PIATTAFORMA":
+	            case "DATA_USCITA":
+	            case "GENERE":
+	            case "IN_VENDITA":
+	                selectSQL += " ORDER BY " + order;
+	                break;
+	            default:
+	                throw new SQLException("Ordine non valido");
+	        }
+	    }
 
 		try {
 			connection = ds.getConnection();
